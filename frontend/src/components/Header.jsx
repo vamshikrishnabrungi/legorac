@@ -30,7 +30,7 @@ const Header = () => {
             <line x1="12" y1="12" x2="6" y2="18" stroke="currentColor" strokeWidth="1" />
             <line x1="12" y1="12" x2="18" y2="18" stroke="currentColor" strokeWidth="1" />
           </svg>
-          <span className="text-base font-normal tracking-wide">LEGORA</span>
+          <span className="text-base font-normal tracking-wide">NAYA AI</span>
         </div>
 
         {/* Navigation */}
