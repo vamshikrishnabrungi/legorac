@@ -64,6 +64,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      
+      {/* ChatBot Component */}
+      <ChatBot />
     </section>
   );
 };
