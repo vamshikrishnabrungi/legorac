@@ -28,7 +28,7 @@ const Compliance = () => {
             Certified & compliant
           </p>
           <h2 className="text-4xl font-serif max-w-3xl mx-auto">
-            Legora is committed to maintaining compliance with the most rigorous international safety and security standards.
+            Naya AI is committed to maintaining compliance with the most rigorous international safety and security standards.
           </h2>
         </div>
 
