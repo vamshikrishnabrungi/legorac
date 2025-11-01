@@ -6,7 +6,7 @@ const Testimonial = () => {
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-serif leading-snug mb-8">
-            Today as much as 80% of our people are active users, and as high as 30% use Legora more than ten times a day.
+            Today as much as 80% of our people are active users, and as high as 30% use Naya AI more than ten times a day.
           </h2>
           <div className="space-y-2">
             <p className="text-lg font-semibold">Thomas K Svensen</p>
