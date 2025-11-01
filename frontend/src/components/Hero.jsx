@@ -59,11 +59,11 @@ const Hero = () => {
 
         {/* Professional Class AI callout */}
         <div className="mt-16 md:mt-20">
-          <div className="bg-white border border-gray-200 rounded-[32px] px-8 sm:px-12 md:px-16 py-16 text-center shadow-[0_40px_120px_rgba(15,23,42,0.08)]">
+          <div className="max-w-3xl mx-auto text-center px-6 sm:px-10">
             <h2 className="font-serif text-[40px] sm:text-[56px] md:text-[64px] leading-[1.1] text-gray-900">
               Professional Class AI
             </h2>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="mt-6 text-lg sm:text-xl text-gray-600">
               Domain-specific AI for law firms, professional service providers, and the Fortune 500.
             </p>
             <button
