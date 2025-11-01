@@ -8,9 +8,9 @@ const Hero = () => {
         {/* Hero Headline - Much Larger */}
         <div className="max-w-5xl mb-12">
           <h1 className="text-[110px] leading-[1.05] font-serif tracking-tight mb-0">
-            Legal work,
+            Legal <span className="inline-block">work,</span>
           </h1>
-          <h1 className="text-[110px] leading-[1.05] font-serif tracking-tight mb-0">
+          <h1 className="text-[110px] leading-[1.05] font-serif tracking-tight mb-0 ml-[308px]">
             without limits.
           </h1>
         </div>
