@@ -39,8 +39,8 @@ const Features = () => {
               </div>
               
               {/* Title at bottom */}
-              <div className=\"mt-6\">
-                <h3 className=\"text-xl font-serif mb-2\">Review faster</h3>
+              <div className="mt-6">
+                <h3 className="text-xl font-serif mb-2">Review faster</h3>
               </div>
             </div>
           </div>
