@@ -58,23 +58,27 @@ const Hero = () => {
         <ChatInterface />
 
         {/* Professional Class AI callout */}
-        <div className="mt-16 md:mt-20 text-center">
-          <h2 className="font-serif text-[40px] sm:text-[56px] md:text-[64px] leading-[1.1] text-gray-900">
-            Professional Class AI
-          </h2>
-          <p className="mt-6 text-lg sm:text-xl text-gray-600">
-            Domain-specific AI for law firms, professional service providers, and the Fortune 500.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-full bg-gray-900 px-10 py-4 text-lg font-medium text-white transition hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-            >
-              Request a Demo
-            </button>
-            <span className="text-base sm:text-lg text-gray-500">
-              Experience the speed, security, and precision your team expects.
-            </span>
+        <div className="mt-16 md:mt-24">
+          <div className="max-w-5xl mx-auto md:flex md:items-center md:justify-between md:gap-14">
+            <div className="text-center md:text-left md:max-w-3xl">
+              <h2 className="font-serif text-[40px] sm:text-[56px] md:text-[64px] leading-[1.05] text-gray-900">
+                Professional Class AI
+              </h2>
+              <p className="mt-6 text-lg sm:text-xl text-gray-600">
+                Domain-specific AI for law firms, professional service providers, and the Fortune 500.
+              </p>
+            </div>
+            <div className="mt-10 md:mt-0 flex flex-col items-center gap-6 sm:flex-row md:flex-col md:items-end">
+              <button
+                type="button"
+                className="inline-flex items-center justify-center rounded-full bg-gray-900 px-10 py-4 text-lg font-medium text-white transition hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+              >
+                Request a Demo
+              </button>
+              <span className="text-base sm:text-lg text-gray-500 md:text-right">
+                Experience the speed, security, and precision your team expects.
+              </span>
+            </div>
           </div>
         </div>
       </div>
