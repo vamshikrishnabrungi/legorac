@@ -20,10 +20,10 @@ const Features = () => {
           <div className="bg-[#B8C9C4] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow">
             <div className="p-8 h-[650px] flex flex-col">
               {/* Document list */}
-              <div className=\"flex-1 flex items-center justify-center\">
-                <div className=\"bg-white rounded-lg p-6 shadow-md w-full max-w-sm\">
-                  <div className=\"text-xs font-semibold text-gray-700 mb-4\">Document</div>
-                  <div className=\"space-y-3\">
+              <div className="flex-1 flex items-center justify-center">
+                <div className="bg-white rounded-lg p-6 shadow-md w-full max-w-sm">
+                  <div className="text-xs font-semibold text-gray-700 mb-4">Document</div>
+                  <div className="space-y-3">
                     {documents.map((doc, idx) => (
                       <div key={idx} className={`flex items-center gap-2 text-xs ${doc.color}`}>
                         <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
