@@ -57,7 +57,7 @@ const Hero = () => {
                 </div>
               </div>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Spend less time on routine, and more time on the work only lawyers can do. Legora frees you from admin so you can think sharper, move faster, and deliver more for your clients.
+                Spend less time on routine, and more time on the work only lawyers can do. Naya AI frees you from admin so you can think sharper, move faster, and deliver more for your clients.
               </p>
             </div>
           </div>
