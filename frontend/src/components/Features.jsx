@@ -142,7 +142,7 @@ const Features = () => {
 
         <div className="text-center mt-16 max-w-3xl mx-auto">
           <p className="text-lg leading-relaxed text-gray-700">
-            The collaborative AI workspace built to fit seamlessly into a lawyer's workflow. Legora adapts to your ways of working, unlocking team and machine collaboration at scale.
+            The collaborative AI workspace built to fit seamlessly into a lawyer's workflow. Naya AI adapts to your ways of working, unlocking team and machine collaboration at scale.
           </p>
         </div>
       </div>
