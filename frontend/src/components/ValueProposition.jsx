@@ -9,7 +9,7 @@ const ValueProposition = () => {
             SMARTER TOOLS, BETTER OUTCOMES
           </p>
           <h2 className="text-[42px] font-serif leading-tight max-w-4xl mx-auto">
-            Legora streamlines everything from research to drafting and review — helping lawyers spend less time managing process, and more time delivering value.
+            Naya AI streamlines everything from research to drafting and review — helping lawyers spend less time managing process, and more time delivering value.
           </h2>
         </div>
       </div>
