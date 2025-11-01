@@ -32,7 +32,7 @@ const Solutions = () => {
     <section className="py-24 bg-white">
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="mb-12">
-          <h2 className="text-4xl font-serif mb-4">Legora meets lawyers where they are.</h2>
+          <h2 className="text-4xl font-serif mb-4">Naya AI meets lawyers where they are.</h2>
         </div>
 
         <div className="grid grid-cols-4 gap-6">
