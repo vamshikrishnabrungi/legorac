@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="mb-16">
           <svg width="100" height="20" viewBox="0 0 100 20" fill="none">
             <text x="0" y="15" fontFamily="serif" fontSize="18" fontWeight="400" fill="#000">
-              LEGORA
+              NAYA AI
             </text>
           </svg>
         </div>
