@@ -17,8 +17,8 @@ const Features = () => {
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="grid grid-cols-3 gap-4">
           {/* Review faster card */}
-          <div className=\"bg-[#B8C9C4] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow\">
-            <div className=\"p-8 h-[650px] flex flex-col\">
+          <div className="bg-[#B8C9C4] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow">
+            <div className="p-8 h-[650px] flex flex-col">
               {/* Document list */}
               <div className=\"flex-1 flex items-center justify-center\">
                 <div className=\"bg-white rounded-lg p-6 shadow-md w-full max-w-sm\">
