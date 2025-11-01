@@ -13,9 +13,9 @@ const Features = () => {
   ];
 
   return (
-    <section className=\"py-0 bg-white\">
-      <div className=\"max-w-[1400px] mx-auto px-8\">
-        <div className=\"grid grid-cols-3 gap-4\">
+    <section className="py-0 bg-white">
+      <div className="max-w-[1400px] mx-auto px-8">
+        <div className="grid grid-cols-3 gap-4">
           {/* Review faster card */}
           <div className=\"bg-[#B8C9C4] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow\">
             <div className=\"p-8 h-[650px] flex flex-col\">
