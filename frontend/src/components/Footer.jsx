@@ -63,10 +63,10 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Large LEGORA Text */}
+        {/* Large NAYA AI Text */}
         <div className="mb-8">
           <div className="text-[120px] font-serif leading-none tracking-tight text-gray-900">
-            LEGORA
+            NAYA AI
           </div>
         </div>
 
