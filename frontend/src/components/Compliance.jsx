@@ -8,7 +8,7 @@ const Compliance = () => {
     },
     {
       title: 'ISO 27001',
-      description: 'Legora is fully compliant with ISO 27001, the internationally recognized standard for information security management.',
+      description: 'Naya AI is fully compliant with ISO 27001, the internationally recognized standard for information security management.',
     },
     {
       title: 'SOC Type 2',
