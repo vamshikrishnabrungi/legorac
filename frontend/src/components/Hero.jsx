@@ -58,13 +58,23 @@ const Hero = () => {
         <ChatInterface />
 
         {/* Professional Class AI callout */}
-        <div className="mt-16 md:mt-24">
+        <section
+          className="mt-16 md:mt-24"
+          aria-labelledby="professional-class-ai-heading"
+          aria-describedby="professional-class-ai-description"
+        >
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-[40px] sm:text-[56px] md:text-[64px] leading-[1.05] text-gray-900">
+            <h2
+              id="professional-class-ai-heading"
+              className="font-serif text-[40px] sm:text-[56px] md:text-[64px] leading-[1.05] text-gray-900"
+            >
               <span className="block">Professional</span>
               <span className="block">Class AI</span>
             </h2>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600">
+            <p
+              id="professional-class-ai-description"
+              className="mt-6 text-lg sm:text-xl text-gray-600"
+            >
               Domain-specific AI for law firms, professional service providers, and the Fortune 500.
             </p>
             <button
@@ -74,7 +84,7 @@ const Hero = () => {
               Request a Demo
             </button>
           </div>
-        </div>
+        </section>
       </div>
     </section>
   );
