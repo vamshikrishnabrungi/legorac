@@ -40,7 +40,7 @@ const Hero = () => {
               <span ref={indentRef} className="inline-block">
                 {'Legal\u00a0'}
               </span>
-              <span>work,</span>
+              <span>workflows,</span>
             </span>
             <span
               className="block"
@@ -49,7 +49,7 @@ const Hero = () => {
                 whiteSpace: shouldIndent ? 'nowrap' : 'normal',
               }}
             >
-              {'without\u00a0limits.'}
+              {'without\u00a0limitations.'}
             </span>
           </h1>
         </div>
