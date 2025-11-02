@@ -49,7 +49,7 @@ const Hero = () => {
                 whiteSpace: shouldIndent ? 'nowrap' : 'normal',
               }}
             >
-              {'without\u00a0limitations.'}
+              {'without\u00a0limits.'}
             </span>
           </h1>
         </div>
