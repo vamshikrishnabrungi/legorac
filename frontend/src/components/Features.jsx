@@ -1,7 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Globe, Scale, Database, Plus, Sparkles, Zap } from 'lucide-react';
 
+const FEATURE_DETAILS = [
+  {
+    title: 'Review faster',
+    description:
+      'Spot redlines, summarize changes, and compare versions in seconds so diligence never slows you down.',
+  },
+  {
+    title: 'Draft smarter',
+    description:
+      'Spin up new agreements from approved playbooks and clause libraries while AI handles the heavy lifting.',
+  },
+  {
+    title: 'Research deeper',
+    description:
+      'Search internal files, legal databases, and the open web in one workspace—complete with citations.',
+  },
+];
+
 const Features = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) {
+      return undefined;
+    }
+
+    const intervalId = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % FEATURE_DETAILS.length);
+    }, 6000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [isPaused]);
+
+  const handleActivate = (index) => {
+    setActiveIndex(index);
+    setIsPaused(true);
+  };
+
+  const handleDeactivate = () => {
+    setIsPaused(false);
+  };
+
+  const handleKeyDown = (event, index) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleActivate(index);
+    }
+  };
+
   const documents = [
     { name: 'Beta_Solutions_Client_Contract_2022.docx', type: 'docx', color: 'text-blue-600' },
     { name: 'Acme_Corp_Agreement_2023.pdf', type: 'pdf', color: 'text-red-600' },
@@ -15,9 +66,47 @@ const Features = () => {
   return (
     <section className="py-0 bg-white">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div className="relative h-14 sm:h-16 overflow-hidden" aria-live="polite">
+            {FEATURE_DETAILS.map((feature, idx) => (
+              <h2
+                key={feature.title}
+                className={`absolute inset-0 flex items-center justify-center font-serif text-2xl sm:text-4xl transition-all duration-700 ease-out ${
+                  activeIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                }`}
+              >
+                {feature.title}
+              </h2>
+            ))}
+          </div>
+          <div className="relative h-16 sm:h-20 mt-4 overflow-hidden">
+            {FEATURE_DETAILS.map((feature, idx) => (
+              <p
+                key={`${feature.title}-description`}
+                className={`absolute inset-0 flex items-center justify-center px-4 text-sm sm:text-lg text-gray-600 transition-all duration-700 ease-out ${
+                  activeIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+              >
+                {feature.description}
+              </p>
+            ))}
+          </div>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Review faster card */}
-          <div className="bg-[#B8C9C4] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow rounded-lg">
+          <div
+            className={`bg-[#B8C9C4] overflow-hidden group cursor-pointer rounded-lg transition-all duration-500 ease-out ${
+              activeIndex === 0 ? 'shadow-2xl ring-2 ring-gray-900 scale-[1.02]' : 'shadow-lg scale-[0.99]'
+            }`}
+            onMouseEnter={() => handleActivate(0)}
+            onFocus={() => handleActivate(0)}
+            onMouseLeave={handleDeactivate}
+            onBlur={handleDeactivate}
+            tabIndex={0}
+            role="button"
+            aria-pressed={activeIndex === 0}
+            onKeyDown={(event) => handleKeyDown(event, 0)}
+          >
             <div className="p-6 sm:p-8 h-auto md:h-[650px] flex flex-col">
               {/* Document list */}
               <div className="flex-1 flex items-center justify-center">
@@ -37,16 +126,34 @@ const Features = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Title at bottom */}
               <div className="mt-6">
-                <h3 className="text-xl font-serif mb-2">Review faster</h3>
+                <h3
+                  className={`text-xl font-serif transition-all duration-500 ease-out ${
+                    activeIndex === 0 ? 'translate-y-0 opacity-100 text-gray-900' : 'translate-y-2 opacity-60 text-gray-800'
+                  }`}
+                >
+                  Review faster
+                </h3>
               </div>
             </div>
           </div>
 
           {/* Draft smarter card */}
-          <div className="bg-[#C5D9E8] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow rounded-lg">
+          <div
+            className={`bg-[#C5D9E8] overflow-hidden group cursor-pointer rounded-lg transition-all duration-500 ease-out ${
+              activeIndex === 1 ? 'shadow-2xl ring-2 ring-gray-900 scale-[1.02]' : 'shadow-lg scale-[0.99]'
+            }`}
+            onMouseEnter={() => handleActivate(1)}
+            onFocus={() => handleActivate(1)}
+            onMouseLeave={handleDeactivate}
+            onBlur={handleDeactivate}
+            tabIndex={0}
+            role="button"
+            aria-pressed={activeIndex === 1}
+            onKeyDown={(event) => handleKeyDown(event, 1)}
+          >
             <div className="p-6 sm:p-8 h-auto md:h-[650px] flex flex-col">
               {/* App icons - unified container */}
               <div className="flex-1 flex items-center justify-center">
@@ -73,16 +180,34 @@ const Features = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Title at bottom */}
               <div className="mt-6">
-                <h3 className="text-xl font-serif mb-2">Draft smarter</h3>
+                <h3
+                  className={`text-xl font-serif transition-all duration-500 ease-out ${
+                    activeIndex === 1 ? 'translate-y-0 opacity-100 text-gray-900' : 'translate-y-2 opacity-60 text-gray-800'
+                  }`}
+                >
+                  Draft smarter
+                </h3>
               </div>
             </div>
           </div>
 
           {/* Research deeper card */}
-          <div className="bg-[#D8D8D8] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow rounded-lg">
+          <div
+            className={`bg-[#D8D8D8] overflow-hidden group cursor-pointer rounded-lg transition-all duration-500 ease-out ${
+              activeIndex === 2 ? 'shadow-2xl ring-2 ring-gray-900 scale-[1.02]' : 'shadow-lg scale-[0.99]'
+            }`}
+            onMouseEnter={() => handleActivate(2)}
+            onFocus={() => handleActivate(2)}
+            onMouseLeave={handleDeactivate}
+            onBlur={handleDeactivate}
+            tabIndex={0}
+            role="button"
+            aria-pressed={activeIndex === 2}
+            onKeyDown={(event) => handleKeyDown(event, 2)}
+          >
             <div className="p-6 sm:p-8 h-auto md:h-[650px] flex flex-col">
               {/* Research interface */}
               <div className="flex-1 flex items-center justify-center">
@@ -131,10 +256,16 @@ const Features = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Title at bottom */}
               <div className="mt-6">
-                <h3 className="text-xl font-serif mb-2">Research deeper</h3>
+                <h3
+                  className={`text-xl font-serif transition-all duration-500 ease-out ${
+                    activeIndex === 2 ? 'translate-y-0 opacity-100 text-gray-900' : 'translate-y-2 opacity-60 text-gray-800'
+                  }`}
+                >
+                  Research deeper
+                </h3>
               </div>
             </div>
           </div>
