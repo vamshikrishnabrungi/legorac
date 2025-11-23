@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Upload, X, FileText, Shield, User, Briefcase, ChevronDown, BookOpen, Scale, Plus } from 'lucide-react';
+import { Send, Upload, X, FileText, Shield, BookOpen, Scale, Plus } from 'lucide-react';
 
 const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [persona, setPersona] = useState('individual');
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [showPersonaMenu, setShowPersonaMenu] = useState(false);
   const [showPlusMenu, setShowPlusMenu] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
@@ -114,57 +112,22 @@ const ChatInterface = () => {
     setShowPlusMenu(false);
   };
 
-  const starterPrompts = persona === 'individual' 
-    ? ['Know your rights', 'Understand a legal notice', 'How to file an FIR', 'Consumer complaint guide']
-    : ['Research case law', 'Review contract', 'Draft bail application', 'Extract key dates'];
+  const starterPrompts = [
+    'Know your rights',
+    'Understand a legal notice',
+    'How to file an FIR',
+    'Consumer complaint guide',
+    'Draft a legal notice',
+    'Analyze uploaded case file',
+    'Employment & HR policy guide',
+  ];
 
   return (
     <div className="w-full mb-12">
       {/* Clean Header */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
-        <div className="text-center md:text-left">
-          <h2 className="text-3xl sm:text-4xl font-serif mb-2">What can I help you with?</h2>
-          <p className="text-gray-500 text-sm sm:text-base">Ask about Indian law, analyze documents, or draft legal notices</p>
-        </div>
-        
-        {/* Persona Selector - Minimal */}
-        <div className="relative self-center md:self-auto">
-          <button
-            onClick={() => setShowPersonaMenu(!showPersonaMenu)}
-            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-          >
-            {persona === 'individual' ? <User className="w-4 h-4" /> : <Briefcase className="w-4 h-4" />}
-            <span>{persona === 'individual' ? 'Individual' : 'Lawyer'}</span>
-            <ChevronDown className="w-4 h-4" />
-          </button>
-          
-          {showPersonaMenu && (
-            <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-lg border border-gray-200 min-w-[160px] py-1 z-10">
-              <button
-                onClick={() => {
-                  setPersona('individual');
-                  setShowPersonaMenu(false);
-                  setMessages([]);
-                }}
-                className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2"
-              >
-                <User className="w-4 h-4" />
-                Individual
-              </button>
-              <button
-                onClick={() => {
-                  setPersona('lawyer');
-                  setShowPersonaMenu(false);
-                  setMessages([]);
-                }}
-                className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2"
-              >
-                <Briefcase className="w-4 h-4" />
-                Lawyer
-              </button>
-            </div>
-          )}
-        </div>
+      <div className="mb-6 text-center md:text-left">
+        <h2 className="text-3xl sm:text-4xl font-serif mb-2">Chat with India’s first legal AI</h2>
+        <p className="text-gray-500 text-sm sm:text-base">Ask anything — e.g., ‘Section 420 IPC’, ‘Draft a bail application’, or ‘Analyze casefile.pdf’.</p>
       </div>
 
       {/* Disclaimer - Minimal */}
@@ -172,9 +135,7 @@ const ChatInterface = () => {
         <p className="text-sm text-gray-700 flex items-start gap-2">
           <Shield className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
           <span>
-            {persona === 'individual' 
-              ? "Legal information with citations. Not legal advice. Consult a qualified lawyer for your situation."
-              : "AI assistant with verifiable sources. You maintain control of all legal decisions."}
+            Legal information with citations. Not legal advice. Consult a qualified lawyer for your situation.
           </span>
         </p>
       </div>
@@ -320,7 +281,7 @@ const ChatInterface = () => {
                 handleSend();
               }
             }}
-            placeholder="Ask about Indian law, upload documents, or type a command..."
+            placeholder="Ask anything — e.g., 'Section 420 IPC', 'Draft a bail application', or 'Analyze casefile.pdf'."
             rows={1}
             className="flex-1 resize-none outline-none text-sm py-2 max-h-32 overflow-y-auto"
             style={{ minHeight: '24px' }}
@@ -343,6 +304,9 @@ const ChatInterface = () => {
 
       {/* Feature Cards - Minimal */}
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-12 border-t border-gray-100">
+        <div className="col-span-full -mt-8 mb-4 text-center">
+          <p className="text-xs sm:text-sm text-gray-500">Built for precision. Trusted for speed.</p>
+        </div>
         <div className="text-center">
           <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center mx-auto mb-4">
             <Shield className="w-6 h-6 text-white" />
@@ -370,6 +334,26 @@ const ChatInterface = () => {
           <h4 className="font-serif text-base font-semibold mb-2">Draft Assistance</h4>
           <p className="text-sm text-gray-500 leading-relaxed">
             Generate legal documents with proper formatting
+          </p>
+        </div>
+
+        <div className="text-center">
+          <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Shield className="w-6 h-6 text-white" />
+          </div>
+          <h4 className="font-serif text-base font-semibold mb-2">Loophole Detection</h4>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Automatically flag inconsistencies in your case.
+          </p>
+        </div>
+
+        <div className="text-center">
+          <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Scale className="w-6 h-6 text-white" />
+          </div>
+          <h4 className="font-serif text-base font-semibold mb-2">Compliance & HR Automation</h4>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Simplify internal legal workflows.
           </p>
         </div>
       </div>

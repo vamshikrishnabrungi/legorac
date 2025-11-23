@@ -170,7 +170,7 @@ const Features = () => {
                         <line x1="7" y1="12" x2="17" y2="12" />
                       </svg>
                     </div>
-                    
+
                     {/* Word icon */}
                     <div className="bg-white rounded-3xl p-6 shadow-md">
                       <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center">
@@ -196,7 +196,7 @@ const Features = () => {
 
           {/* Research deeper card */}
           <div
-            className={`bg-[#D8D8D8] overflow-hidden group cursor-pointer rounded-lg transition-all duration-500 ease-out ${
+            className={`bg-[#F2D7A8] overflow-hidden group cursor-pointer rounded-lg transition-all duration-500 ease-out ${
               activeIndex === 2 ? 'shadow-2xl ring-2 ring-gray-900 scale-[1.02]' : 'shadow-lg scale-[0.99]'
             }`}
             onMouseEnter={() => handleActivate(2)}
@@ -209,47 +209,24 @@ const Features = () => {
             onKeyDown={(event) => handleKeyDown(event, 2)}
           >
             <div className="p-6 sm:p-8 h-auto md:h-[650px] flex flex-col">
-              {/* Research interface */}
+              {/* Radar map */}
               <div className="flex-1 flex items-center justify-center">
-                <div className="w-full max-w-md">
-                  <div className="bg-white rounded-xl p-6 shadow-md">
-                    <input
-                      type="text"
-                      placeholder="What would you like to do?"
-                      className="w-full text-sm text-gray-400 border-none outline-none mb-4"
-                    />
-                    
-                    {/* Action buttons */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium hover:bg-gray-50 rounded transition-colors">
-                        <Plus className="w-3 h-3" />
-                        <span>Add sources</span>
-                      </button>
-                      <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium hover:bg-gray-50 rounded transition-colors">
-                        <Sparkles className="w-3 h-3" />
-                        <span>Create</span>
-                      </button>
-                      <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium hover:bg-gray-50 rounded transition-colors">
-                        <Zap className="w-3 h-3" />
-                        <span>Workflows</span>
-                      </button>
-                    </div>
-                    
-                    {/* Sources dropdown */}
-                    <div className="border-t pt-3">
-                      <div className="text-xs font-semibold text-gray-500 mb-2">Sources</div>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-sm hover:bg-gray-50 p-2 rounded cursor-pointer">
-                          <Globe className="w-4 h-4 text-blue-600" />
-                          <span>Web search</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm hover:bg-gray-50 p-2 rounded cursor-pointer">
-                          <Scale className="w-4 h-4 text-yellow-600" />
-                          <span>Legal search</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm hover:bg-gray-50 p-2 rounded cursor-pointer">
-                          <Database className="w-4 h-4 text-green-600" />
-                          <span>Database search</span>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-200/30 via-transparent to-amber-200/30 blur-3xl" />
+                  <div className="relative bg-white rounded-full p-6 shadow-xl">
+                    <div className="w-52 h-52 sm:w-64 sm:h-64 rounded-full border border-gray-200 flex items-center justify-center relative">
+                      <div className="absolute inset-6 border border-dashed border-gray-300 rounded-full" />
+                      <div className="absolute inset-12 border border-dashed border-gray-200 rounded-full" />
+
+                      <div className="absolute w-2 h-2 rounded-full bg-gray-900 top-4 left-1/2 -translate-x-1/2" />
+                      <div className="absolute w-2 h-2 rounded-full bg-gray-900 bottom-6 right-10" />
+                      <div className="absolute w-2 h-2 rounded-full bg-gray-900 top-10 left-10" />
+                      <div className="absolute w-3 h-3 rounded-full bg-gray-900 bottom-12 left-12" />
+
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex flex-col items-center gap-2">
+                          <Sparkles className="w-6 h-6 text-amber-500" />
+                          <p className="text-xs text-gray-600">CITATIONS</p>
                         </div>
                       </div>
                     </div>
@@ -270,15 +247,10 @@ const Features = () => {
             </div>
           </div>
         </div>
-
-        <div className="text-center mt-12 sm:mt-16 max-w-3xl mx-auto px-4">
-          <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-            The collaborative AI workspace built to fit seamlessly into a lawyer's workflow. Naya AI adapts to your ways of working, unlocking team and machine collaboration at scale.
-          </p>
-        </div>
       </div>
     </section>
   );
 };
 
 export default Features;
+

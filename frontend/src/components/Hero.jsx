@@ -38,9 +38,9 @@ const Hero = () => {
           <h1 className="text-[52px] sm:text-[80px] lg:text-[160px] leading-[1] font-serif tracking-tight">
             <span className="block">
               <span ref={indentRef} className="inline-block">
-                {'Legal\u00a0'}
+                {'Smarter\u00a0'}
               </span>
-              <span>workflows,</span>
+              <span>law.</span>
             </span>
             <span
               className="block"
@@ -49,7 +49,7 @@ const Hero = () => {
                 whiteSpace: shouldIndent ? 'nowrap' : 'normal',
               }}
             >
-              {'without\u00a0limits.'}
+              {'Simplified\u00a0by\u00a0AI.'}
             </span>
           </h1>
         </div>
@@ -91,3 +91,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

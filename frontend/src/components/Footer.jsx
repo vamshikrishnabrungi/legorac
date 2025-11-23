@@ -1,30 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { megaMenuConfig, pageContent } from '../data/pageContent';
 
 const Footer = () => {
-  const footerLinks = [
+  const productGroup = megaMenuConfig.find((item) => item.label === 'Product');
+  const solutionsGroup = megaMenuConfig.find((item) => item.label === 'Solutions');
+  const industriesGroup = megaMenuConfig.find((item) => item.label === 'Industries');
+
+  const footerGroups = [
     {
-      title: 'PRODUCT',
-      links: ['Overview', 'Word Add-In', 'Tabular Review', 'Workflows', 'Legal Research']
+      title: 'Product',
+      links: productGroup?.items ?? [],
     },
     {
-      title: 'SOLUTIONS',
-      links: ['M&A', 'Litigation', 'Banking', 'Tax']
+      title: 'Solutions',
+      links: solutionsGroup?.items ?? [],
     },
     {
-      title: 'CUSTOMERS',
-      links: ['Overview']
+      title: 'Industries',
+      links: industriesGroup?.items ?? [],
     },
     {
-      title: 'JOIN US',
-      links: ['Careers']
-    },
-    {
-      title: 'COMPANY',
-      links: ['About', 'Contact us', 'LinkedIn', 'X']
-    },
-    {
-      title: 'LEGAL',
-      links: ['Terms', 'Privacy Policy', 'Security Policy']
+      title: 'Company',
+      links: [
+        { label: 'Resources', path: pageContent.resources.path },
+        { label: 'Security', path: pageContent.security.path },
+        { label: 'Pricing', path: pageContent.pricing.path },
+      ],
     },
   ];
 
@@ -41,21 +43,21 @@ const Footer = () => {
         </div>
 
         {/* Footer Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 mb-12 sm:mb-16">
-          {footerLinks.map((section, index) => (
-            <div key={index}>
-              <h4 className="text-xs font-semibold tracking-wider text-gray-500 mb-4">
-                {section.title}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 mb-12 sm:mb-16">
+          {footerGroups.map((group) => (
+            <div key={group.title}>
+              <h4 className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500 mb-4">
+                {group.title}
               </h4>
               <ul className="space-y-3">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a
-                      href="#"
+                {group.links.map((link) => (
+                  <li key={`${group.title}-${link.label}`}>
+                    <Link
+                      to={link.path}
                       className="text-sm text-gray-900 hover:text-gray-600 transition-colors"
                     >
-                      {link}
-                    </a>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

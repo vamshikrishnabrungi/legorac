@@ -1,30 +1,44 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { pageContent } from '../data/pageContent';
 
 const Solutions = () => {
-  const solutions = [
+  const industries = [
     {
       title: 'Litigation',
-      description: 'Streamline the litigation process and free your team to focus on a winning outcome.',
+      description: 'Summarize cases & generate arguments instantly.',
       image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80',
-      link: '/solutions/litigation'
+      path: pageContent.industryLitigation.path,
     },
     {
       title: 'M&A',
-      description: 'Review documents faster and draft precise, detailed agreements and reports in less time.',
+      description: 'Automate diligence & extract key clauses.',
       image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80',
-      link: '/solutions/ma'
+      path: pageContent.industryMA.path,
     },
     {
       title: 'Tax',
-      description: 'Analyze complex tax rulings and legislation with speed and clarity.',
-      image: 'https://images.unsplash.com/photo-1554224311-beee4ece3c5d?w=600&q=80',
-      link: '/solutions/tax'
+      description: 'Interpret rulings & draft replies with precision.',
+      image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=600&q=80',
+      path: pageContent.industryTax.path,
     },
     {
       title: 'Banking',
-      description: 'Stay ahead of regulation, process documents faster and focus on strategy.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80',
-      link: '/solutions/banking'
+      description: 'Accelerate regulatory filings, reduce risk.',
+      image: 'https://images.unsplash.com/photo-1523289333742-be1143f6b766?w=600&q=80',
+      path: pageContent.industryBanking.path,
+    },
+    {
+      title: 'Employment & HR',
+      description: 'Create contracts, NDAs & policies automatically.',
+      image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80',
+      path: pageContent.industryEmploymentHR.path,
+    },
+    {
+      title: 'Corporate Compliance',
+      description: 'Track obligations & board filings in one dashboard.',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+      path: pageContent.industryCorporateCompliance.path,
     },
   ];
 
@@ -32,30 +46,31 @@ const Solutions = () => {
     <section className="py-16 sm:py-24 bg-white">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-serif mb-4">Naya AI meets lawyers where they are.</h2>
+          <h2 className="text-3xl sm:text-4xl font-serif mb-4">Industries</h2>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl">
+            Naya AI adapts to the realities of your practice area — from litigation to compliance — so every team can deliver faster, more precise outcomes.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
-          {solutions.map((solution, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer overflow-hidden rounded-lg"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {industries.map((industry) => (
+            <Link
+              key={industry.title}
+              to={industry.path}
+              className="group h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
             >
-              <div className="relative h-[260px] sm:h-[340px] md:h-[400px] overflow-hidden rounded-lg">
+              <div className="relative h-[220px] sm:h-[260px] md:h-[300px] overflow-hidden">
                 <img
-                  src={solution.image}
-                  alt={solution.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  src={industry.image}
+                  alt={industry.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
-                  <h3 className="text-xl sm:text-2xl font-serif mb-2">{solution.title}</h3>
-                  <p className="text-sm leading-relaxed opacity-90">
-                    {solution.description}
-                  </p>
-                </div>
               </div>
-            </div>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-serif text-gray-900">{industry.title}</h3>
+                <p className="mt-2 text-sm text-gray-600 leading-relaxed">{industry.description}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

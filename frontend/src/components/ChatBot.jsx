@@ -1,17 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Upload, X, FileText, Shield, MessageSquare, BookOpen, Scale, User, Briefcase, ChevronDown } from 'lucide-react';
+import { Send, Upload, X, FileText, Shield, MessageSquare, BookOpen, Scale } from 'lucide-react';
 import { Button } from './ui/button';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [persona, setPersona] = useState('individual'); // 'individual' or 'lawyer'
-  const [jurisdiction, setJurisdiction] = useState('india');
-  const [language, setLanguage] = useState('english');
   const [uploadedFile, setUploadedFile] = useState(null);
   const [doNotStore, setDoNotStore] = useState(false);
-  const [showPersonaSelector, setShowPersonaSelector] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -32,15 +28,14 @@ const ChatBot = () => {
           {
             id: 1,
             type: 'bot',
-            content: persona === 'individual' 
-              ? "Hello! I'm NAYA AI, your legal assistant. I can help you understand legal documents, answer legal questions with citations, and provide guidance. What would you like to know today?"
-              : "Hello! I'm NAYA AI. I can help you with legal research, case analysis, drafting assistance, and cite relevant precedents. How can I assist you today?",
+            content:
+              "Hello! I'm NAYA AI, your legal assistant. I can help you understand legal documents, answer questions with citations, and surface next steps. What would you like to know today?",
             timestamp: new Date(),
           },
         ]);
       }, 500);
     }
-  }, [isOpen, persona]);
+  }, [isOpen]);
 
   const mockCitations = [
     { case: "State of Maharashtra v. Mohd. Sajid", year: "2022", court: "Supreme Court", citation: "(2022) 10 SCC 496" },
@@ -143,9 +138,14 @@ const ChatBot = () => {
     }
   };
 
-  const starterChips = persona === 'individual' 
-    ? ['Know your rights', 'Understand a notice', 'File an FIR', 'Consumer complaint']
-    : ['Research precedents', 'Review filing', 'Draft bail application', 'Extract deadlines'];
+  const starterChips = [
+    'Know your rights',
+    'Understand a legal notice',
+    'How to file an FIR',
+    'Consumer complaint guide',
+    'Draft a legal notice',
+    'Analyze uploaded case file',
+  ];
 
   return (
     <div className="fixed bottom-8 right-8 z-50">
@@ -183,55 +183,14 @@ const ChatBot = () => {
             <div className="flex items-start gap-2">
               <Shield className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
               <p>
-                {persona === 'individual' 
-                  ? "NAYA provides legal information with citations. It doesn't replace a lawyer. For advice on your situation, consult a qualified lawyer."
-                  : "AI assistant with verifiable sources. You remain in control."}
+                Legal information with citations. Not legal advice. Consult a qualified lawyer for your situation.
               </p>
             </div>
           </div>
 
-          {/* Persona & Settings Bar */}
+          {/* Settings Bar */}
           <div className="border-b border-gray-200 p-3 bg-gray-50">
             <div className="flex items-center gap-2 flex-wrap">
-              {/* Persona Selector */}
-              <div className="relative">
-                <button
-                  onClick={() => setShowPersonaSelector(!showPersonaSelector)}
-                  className="flex items-center gap-2 px-3 py-1.5 text-xs border border-gray-300 rounded-full bg-white hover:bg-gray-50 transition-colors"
-                >
-                  {persona === 'individual' ? <User className="w-3 h-3" /> : <Briefcase className="w-3 h-3" />}
-                  <span className="font-medium">{persona === 'individual' ? 'Individual' : 'Lawyer'}</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
-                
-                {showPersonaSelector && (
-                  <div className="absolute top-full mt-1 left-0 bg-white border border-gray-200 rounded-lg shadow-lg z-10 min-w-[140px]">
-                    <button
-                      onClick={() => {
-                        setPersona('individual');
-                        setShowPersonaSelector(false);
-                        setMessages([]);
-                      }}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2"
-                    >
-                      <User className="w-4 h-4" />
-                      Individual
-                    </button>
-                    <button
-                      onClick={() => {
-                        setPersona('lawyer');
-                        setShowPersonaSelector(false);
-                        setMessages([]);
-                      }}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2"
-                    >
-                      <Briefcase className="w-4 h-4" />
-                      Lawyer
-                    </button>
-                  </div>
-                )}
-              </div>
-
               {/* Jurisdiction */}
               <span className="px-3 py-1.5 text-xs border border-gray-300 rounded-full bg-white">
                 🇮🇳 India (IPC/CrPC)
@@ -239,7 +198,7 @@ const ChatBot = () => {
 
               {/* Language */}
               <span className="px-3 py-1.5 text-xs border border-gray-300 rounded-full bg-white">
-                {language === 'english' ? 'English' : 'हिन्दी'}
+                English
               </span>
 
               {/* Privacy Toggle */}
