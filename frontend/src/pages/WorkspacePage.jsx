@@ -266,22 +266,22 @@ const WorkspacePage = () => {
               </Card>
 
               <Card>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold">Quick workflows</h3>
                   <button className="text-sm text-slate-600 hover:text-black">View all</button>
                 </div>
-                <div className="space-y-3">
-                  {quickWorkflows.map(({ title, icon: Icon, description }) => (
+                <div className="space-y-4">
+                  {quickWorkflows.slice(0, 3).map(({ title, icon: Icon, description }) => (
                     <div
                       key={title}
-                      className="rounded-xl border border-slate-200 bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-lg transition flex items-start gap-3"
+                      className="rounded-xl border border-slate-200 bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-lg transition flex items-start gap-4 cursor-pointer"
                     >
-                      <div className="h-9 w-9 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-slate-700" />
+                      <div className="h-10 w-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-5 w-5 text-slate-700" />
                       </div>
-                      <div>
-                        <p className="font-semibold text-sm text-slate-900">{title}</p>
-                        <p className="mt-1 text-xs text-slate-600">{description}</p>
+                      <div className="flex-1">
+                        <p className="font-semibold text-sm text-slate-900 leading-relaxed">{title}</p>
+                        <p className="mt-2 text-xs text-slate-600 leading-relaxed">{description}</p>
                       </div>
                     </div>
                   ))}
