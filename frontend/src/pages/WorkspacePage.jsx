@@ -242,25 +242,25 @@ const WorkspacePage = () => {
               </Card>
 
               <Card>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-slate-500" />
-                    <h4 className="font-semibold text-sm">Tasks</h4>
+                    <CheckCircle className="h-5 w-5 text-slate-500" />
+                    <h4 className="font-semibold text-lg">Tasks</h4>
                   </div>
                   <button className="text-xs text-slate-600 hover:text-black">Assign task</button>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-700 divide-y divide-slate-100">
-                  <li className="flex items-center justify-between pt-1">
-                    <span>Deposition summary — upload</span>
-                    <span className="text-xs text-slate-400">Today</span>
+                <ul className="space-y-4 text-sm text-slate-700">
+                  <li className="flex items-center justify-between py-2">
+                    <span className="leading-relaxed">Deposition summary — upload</span>
+                    <span className="text-xs text-slate-400 ml-4">Today</span>
                   </li>
-                  <li className="flex items-center justify-between pt-3">
-                    <span>Chronology cross-check</span>
-                    <span className="text-xs text-slate-400">This week</span>
+                  <li className="flex items-center justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Chronology cross-check</span>
+                    <span className="text-xs text-slate-400 ml-4">This week</span>
                   </li>
-                  <li className="flex items-center justify-between pt-3">
-                    <span>Policy update — HR</span>
-                    <span className="text-xs text-slate-400">Next week</span>
+                  <li className="flex items-center justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Policy update — HR</span>
+                    <span className="text-xs text-slate-400 ml-4">Next week</span>
                   </li>
                 </ul>
               </Card>
