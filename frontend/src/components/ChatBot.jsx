@@ -224,42 +224,16 @@ const ChatBot = () => {
             {messages.map((msg) => (
               <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[85%] ${msg.type === 'user' ? 'bg-black text-white' : 'bg-white border border-gray-200'} rounded-lg p-3 shadow-sm`}>
-                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
                   
-                  {msg.file && (
-                    <div className="mt-2 flex items-center gap-2 text-xs opacity-80">
-                      <FileText className="w-3 h-3" />
-                      <span>{msg.file.name}</span>
-                    </div>
-                  )}
-
-                  {msg.citations && msg.citations.length > 0 && (
-                    <div className="mt-3 pt-3 border-t border-gray-200">
-                      <p className="text-xs font-semibold text-gray-600 mb-2">📚 Citations:</p>
-                      {msg.citations.map((cite, idx) => (
-                        <div key={idx} className="text-xs text-gray-700 mb-2 bg-gray-50 p-2 rounded">
-                          <p className="font-medium">{cite.case}</p>
-                          <p className="text-gray-500">{cite.citation} | {cite.court} ({cite.year})</p>
+                  {msg.files && msg.files.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {msg.files.map((file, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs opacity-80 bg-white/10 px-2 py-1 rounded">
+                          <FileText className="w-3 h-3" />
+                          <span>{file.name}</span>
                         </div>
                       ))}
-                    </div>
-                  )}
-
-                  {msg.hasDraft && msg.draftContent && (
-                    <div className="mt-3 pt-3 border-t border-gray-200">
-                      <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-3 rounded border border-gray-300 relative">
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
-                          <span className="text-6xl font-bold text-gray-400 rotate-[-20deg]">DEMO</span>
-                        </div>
-                        <pre className="text-xs font-mono whitespace-pre-wrap text-gray-700 max-h-48 overflow-y-auto">
-                          {msg.draftContent}
-                        </pre>
-                        <div className="mt-3 text-center">
-                          <button className="text-xs bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">
-                            Sign in to download & customize →
-                          </button>
-                        </div>
-                      </div>
                     </div>
                   )}
 
