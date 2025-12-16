@@ -140,6 +140,9 @@ backend:
         - working: "NA"
           agent: "main"
           comment: "POST /api/status and GET /api/status endpoints implemented. Need testing to verify functionality."
+        - working: "NA"
+          agent: "main"
+          comment: "Backend API health check confirmed working at /api/ endpoint. Ready for full endpoint testing."
 
 frontend:
   - task: "Landing Page UI"
