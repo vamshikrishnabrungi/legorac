@@ -203,15 +203,18 @@ class BackendTester:
     def test_cors_headers(self):
         """Test CORS configuration"""
         try:
-            response = self.session.options(f"{self.base_url}/status")
+            # Test with actual GET request and Origin header
+            response = self.session.get(
+                f"{self.base_url}/", 
+                headers={"Origin": "https://example.com"}
+            )
             
             cors_headers = {
                 "Access-Control-Allow-Origin": response.headers.get("Access-Control-Allow-Origin"),
-                "Access-Control-Allow-Methods": response.headers.get("Access-Control-Allow-Methods"),
-                "Access-Control-Allow-Headers": response.headers.get("Access-Control-Allow-Headers")
+                "Access-Control-Allow-Credentials": response.headers.get("Access-Control-Allow-Credentials")
             }
             
-            if any(cors_headers.values()):
+            if cors_headers["Access-Control-Allow-Origin"]:
                 self.log_test("CORS Configuration", True, "CORS headers present", cors_headers)
             else:
                 self.log_test("CORS Configuration", False, "No CORS headers found", cors_headers)
