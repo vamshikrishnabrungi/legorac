@@ -285,23 +285,27 @@ const ChatBot = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Upload File Notice */}
-          {uploadedFile && (
-            <div className="px-4 py-2 bg-blue-50 border-t border-blue-200 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm">
-                <FileText className="w-4 h-4 text-blue-600" />
-                <span className="text-blue-900 text-xs">{uploadedFile.name}</span>
+          {/* Upload Files Notice */}
+          {uploadedFiles.length > 0 && (
+            <div className="px-4 py-2 bg-blue-50 border-t border-blue-200">
+              <div className="flex flex-wrap gap-2">
+                {uploadedFiles.map((file, idx) => (
+                  <div key={idx} className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-blue-200">
+                    <FileText className="w-4 h-4 text-blue-600" />
+                    <span className="text-blue-900 text-xs">{file.name}</span>
+                    <button onClick={() => setUploadedFiles(prev => prev.filter((_, i) => i !== idx))} className="text-blue-600 hover:text-blue-800">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                ))}
               </div>
-              <button onClick={() => setUploadedFile(null)} className="text-blue-600 hover:text-blue-800">
-                <X className="w-4 h-4" />
-              </button>
             </div>
           )}
 
-          {/* Consent Banner (when file uploaded) */}
-          {uploadedFile && (
+          {/* Consent Banner (when files uploaded) */}
+          {uploadedFiles.length > 0 && (
             <div className="px-4 py-2 bg-orange-50 border-t border-orange-200 text-xs text-orange-900">
-              For this demo, we don't store your file after this session. Remove personal details where possible.
+              Documents are processed securely. Remove personal details where possible.
             </div>
           )}
 
