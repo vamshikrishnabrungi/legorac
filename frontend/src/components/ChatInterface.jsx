@@ -24,50 +24,7 @@ const ChatInterface = () => {
     }
   }, [messages]);
 
-  const mockCitations = [
-    { case: "State of Maharashtra v. Mohd. Sajid", year: "2022", court: "Supreme Court", citation: "(2022) 10 SCC 496" },
-    { case: "K.M. Nanavati v. State of Maharashtra", year: "1962", court: "Supreme Court", citation: "AIR 1962 SC 605" },
-    { case: "Lalita Kumari v. Government of UP", year: "2013", court: "Supreme Court", citation: "(2014) 2 SCC 1" },
-  ];
-
-  const generateMockResponse = (userInput, files) => {
-    const lowerInput = userInput.toLowerCase();
-    
-    if (files && files.length > 0) {
-      return {
-        content: `I've analyzed your ${files.length} document${files.length > 1 ? 's' : ''}. Here's a summary:\n\n**Document Analysis**\n\n**Type**: Legal Case File\n**Primary Document**: ${files[0].name}\n\n**Key Issues Identified**:\n• Breach of contractual obligations (Section 73, Indian Contract Act, 1872)\n• Specific performance claim (Section 10, Specific Relief Act, 1963)\n• Damages and interest calculation\n\n**Legal Provisions**:\n• Indian Contract Act, 1872 - Sections 23, 73, 74\n• Code of Civil Procedure, 1908 - Order VII, XXXVII\n• Specific Relief Act, 1963 - Sections 10, 14, 20\n\n**Recommended Actions**:\n1. Verify limitation periods\n2. Gather supporting evidence\n3. Consider mediation options\n4. Consult with advocate for strategy`,
-        citations: mockCitations,
-      };
-    }
-
-    if (lowerInput.includes('murder') || lowerInput.includes('culpable') || lowerInput.includes('homicide')) {
-      return {
-        content: `**Culpable Homicide vs. Murder under IPC**\n\n**Culpable Homicide (Section 299)**\nCausing death with:\n• Intention of causing death\n• Intention of causing bodily injury likely to cause death\n• Knowledge that act is likely to cause death\n\n**Murder (Section 300)**\nCulpable homicide becomes murder when:\n• Act done with intention of causing death\n• With knowledge act is likely to cause death\n• Act is so dangerous that death is probable consequence\n\n**Key Principle**: All murder is culpable homicide, but not all culpable homicide is murder.\n\n**Exception - Grave & Sudden Provocation**\n• Must be sudden and grave\n• Deprives self-control\n• Committed in heat of passion\n• Before time to cool down`,
-        citations: mockCitations,
-      };
-    }
-
-    if (lowerInput.includes('fir') || lowerInput.includes('police')) {
-      return {
-        content: `**Filing an FIR in India**\n\n**Legal Basis**: Section 154, CrPC, 1973\n\n**Steps to File**:\n1. Visit police station in jurisdiction where crime occurred\n2. Provide oral or written information about cognizable offense\n3. Police must record information in writing\n4. Sign after reading; get free copy\n\n**Your Rights** (Lalita Kumari v. Govt of UP, 2013):\n✓ Police cannot refuse FIR for cognizable offenses\n✓ No preliminary inquiry needed\n✓ Free FIR copy must be provided\n✓ Can file via post if police refuses\n✓ Zero FIR facility available`,
-        citations: [mockCitations[2]],
-      };
-    }
-
-    if (lowerInput.includes('draft') || lowerInput.includes('notice')) {
-      return {
-        content: `I can help you draft a legal notice. Here's a basic template:\n\n**LEGAL NOTICE**\nUnder Section 80, CPC, 1908\n\nTo: [Recipient Details]\n\nDear Sir/Madam,\n\n**Re: Legal Notice**\n\nOn behalf of my client [Name], I serve this notice for the following:\n\n1. **Facts**: [Brief description]\n2. **Cause of Action**: [Legal grounds]\n3. **Demand**: [Relief sought within 15 days]\n4. **Consequences**: Legal proceedings without further notice\n\nYours faithfully,\n[Advocate Details]\n\n---\n*This is a template. Must be customized with specific facts.*\n\n**Sign in to download and customize this draft →**`,
-        citations: [],
-      };
-    }
-
-    return {
-      content: `Hello! I'm NAYA AI, your legal assistant for Indian law.\n\nI can help with:\n• Legal Q&A with verified citations\n• Document analysis (contracts, notices, agreements)\n• IPC, CrPC, CPC, Evidence Act explanations\n• Basic legal drafting\n• Filing procedures (FIR, complaints)\n\nHow can I assist you today?`,
-      citations: [],
-    };
-  };
-
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim() && uploadedFiles.length === 0) return;
 
     const userMessage = {
@@ -75,27 +32,63 @@ const ChatInterface = () => {
       type: 'user',
       content: input || `Analyzing ${uploadedFiles.length} document(s)`,
       timestamp: new Date(),
-      files: [...uploadedFiles],
+      files: uploadedFiles.map(f => ({ name: f.name, size: f.size })),
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = input;
+    const currentFiles = [...uploadedFiles];
     setInput('');
+    setUploadedFiles([]);
     setIsTyping(true);
 
-    setTimeout(() => {
-      const response = generateMockResponse(input, uploadedFiles);
+    try {
+      let response;
+      
+      if (currentFiles.length > 0) {
+        // Upload files with message
+        const formData = new FormData();
+        formData.append('session_id', sessionId);
+        formData.append('message', currentInput || 'Please analyze the uploaded documents.');
+        currentFiles.forEach(file => {
+          formData.append('files', file);
+        });
+
+        const result = await axios.post(`${BACKEND_URL}/api/chat/upload`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        response = result.data.message;
+      } else {
+        // Text-only message
+        const result = await axios.post(`${BACKEND_URL}/api/chat`, {
+          session_id: sessionId,
+          message: currentInput,
+        });
+        response = result.data.message;
+      }
+
       const botMessage = {
         id: Date.now() + 1,
         type: 'bot',
-        content: response.content,
-        citations: response.citations || [],
+        content: response,
         timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage = {
+        id: Date.now() + 1,
+        type: 'bot',
+        content: 'Sorry, I encountered an error processing your request. Please try again.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-      setUploadedFiles([]);
-    }, 2000);
+    }
   };
 
   const handleFileUpload = (e) => {
