@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Upload, X, FileText, Shield, BookOpen, Scale, Plus } from 'lucide-react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
 
 const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
@@ -7,6 +10,7 @@ const ChatInterface = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [showPlusMenu, setShowPlusMenu] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
 
