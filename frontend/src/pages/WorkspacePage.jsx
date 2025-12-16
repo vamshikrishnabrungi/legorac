@@ -190,29 +190,29 @@ const WorkspacePage = () => {
             {/* Secondary modules in 3-column grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <Clock3 className="h-4 w-4 text-slate-500" />
+                    <Clock3 className="h-5 w-5 text-slate-500" />
                     <h3 className="text-lg font-semibold">Recent activity</h3>
                   </div>
                   <button className="text-xs text-slate-600 hover:text-black">View all</button>
                 </div>
-                <div className="space-y-2 text-sm text-slate-700 divide-y divide-slate-100">
-                  <div className="flex justify-between py-1">
-                    <span>Drafted legal notice for Vortex</span>
-                    <span className="text-slate-400">2h</span>
+                <div className="space-y-4 text-sm text-slate-700">
+                  <div className="flex justify-between py-2">
+                    <span className="leading-relaxed">Drafted legal notice for Vortex</span>
+                    <span className="text-slate-400 ml-4">2h</span>
                   </div>
-                  <div className="flex justify-between py-1">
-                    <span>Analyzed FIR and generated chronology</span>
-                    <span className="text-slate-400">Yesterday</span>
+                  <div className="flex justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Analyzed FIR and generated chronology</span>
+                    <span className="text-slate-400 ml-4">Yesterday</span>
                   </div>
-                  <div className="flex justify-between py-1">
-                    <span>Uploaded case bundle to Vault</span>
-                    <span className="text-slate-400">2d</span>
+                  <div className="flex justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Uploaded case bundle to Vault</span>
+                    <span className="text-slate-400 ml-4">2d</span>
                   </div>
-                  <div className="flex justify-between py-1">
-                    <span>Compliance workflow: SEBI filing</span>
-                    <span className="text-slate-400">This week</span>
+                  <div className="flex justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Compliance workflow: SEBI filing</span>
+                    <span className="text-slate-400 ml-4">This week</span>
                   </div>
                 </div>
               </Card>
