@@ -41,90 +41,71 @@ const ChatBot = () => {
     }
   }, [isOpen]);
 
-  const mockCitations = [
-    { case: "State of Maharashtra v. Mohd. Sajid", year: "2022", court: "Supreme Court", citation: "(2022) 10 SCC 496" },
-    { case: "K.M. Nanavati v. State of Maharashtra", year: "1962", court: "Supreme Court", citation: "AIR 1962 SC 605" },
-    { case: "Superintendent and Remembrancer v. Anil Kumar", year: "1980", court: "Supreme Court", citation: "(1980) 1 SCC 315" },
-  ];
-
-  const generateMockResponse = (userInput, file) => {
-    const lowerInput = userInput.toLowerCase();
-    
-    if (file) {
-      return {
-        content: `I've analyzed "${file.name}". Here's a summary:\n\n**Document Type**: Legal Notice\n**Parties Involved**: [Party A] and [Party B]\n**Key Dates**: Filed on [Date]\n**Main Issues**:\n1. Breach of contract concerning payment terms\n2. Demand for compensation of ₹5,00,000\n3. 15-day response deadline\n\n**Legal Provisions Cited**:\n- Indian Contract Act, 1872 - Section 73 (Compensation for loss or damage)\n- Code of Civil Procedure, 1908 - Order XXXVII\n\n**Suggested Next Steps**:\n1. Consult with a qualified lawyer to review your options\n2. Consider responding within the stipulated deadline\n3. Gather supporting documents and evidence`,
-        citations: mockCitations.slice(0, 2),
-        hasDraft: false,
-      };
-    }
-
-    if (lowerInput.includes('murder') || lowerInput.includes('culpable') || lowerInput.includes('homicide')) {
-      return {
-        content: `Under Indian Penal Code (IPC), culpable homicide and murder are distinct offenses:\n\n**Culpable Homicide (Section 299 IPC)**:\nAn act causing death with intention or knowledge likely to cause death.\n\n**Murder (Section 300 IPC)**:\nCulpable homicide becomes murder when:\n1. Act done with intention of causing death\n2. With knowledge that act is likely to cause death\n3. Act is so dangerous that death is the probable consequence\n\n**Exception - Grave & Sudden Provocation (Exception 1 to Section 300)**:\nReduces murder to culpable homicide not amounting to murder when the accused acts under grave and sudden provocation.\n\n**Key Distinctions (Landmark Cases)**:\n- K.M. Nanavati v. State of Maharashtra (1962): Defined "sudden and grave provocation"\n- Superintendent v. Anil Kumar (1980): Established tests for distinguishing murder from culpable homicide`,
-        citations: mockCitations,
-        hasDraft: false,
-      };
-    }
-
-    if (lowerInput.includes('draft') || lowerInput.includes('notice') || lowerInput.includes('complaint')) {
-      return {
-        content: `I can help you create a skeleton draft. Based on your query, here's a basic template:\n\n**[This is a preview. Sign in to download and customize]**`,
-        citations: [],
-        hasDraft: true,
-        draftContent: `LEGAL NOTICE\n\nTo,\n[Name and Address of Recipient]\n\nDear Sir/Madam,\n\nUnder instructions from my client [Your Name], I hereby serve you with this legal notice under Section 80 of the Code of Civil Procedure, 1908.\n\n1. FACTS:\n[Brief description of facts leading to the dispute]\n\n2. CAUSE OF ACTION:\n[Legal grounds for the claim]\n\n3. DEMAND:\nMy client demands [specific relief sought] within 15 days from the receipt of this notice.\n\n4. LEGAL CONSEQUENCES:\nFailure to comply will result in appropriate legal proceedings without further notice.\n\nYours faithfully,\n[Advocate Name]\n[Enrollment Number]\n\nPlace: [City]\nDate: [Date]`,
-      };
-    }
-
-    if (lowerInput.includes('fir') || lowerInput.includes('police') || lowerInput.includes('complaint')) {
-      return {
-        content: `**Filing an FIR (First Information Report) in India:**\n\n**Legal Basis**: Section 154, Code of Criminal Procedure (CrPC), 1973\n\n**Steps to File an FIR**:\n1. Visit the nearest police station in whose jurisdiction the crime occurred\n2. Provide oral or written information about the cognizable offense\n3. Police officer must record the information in writing\n4. The complainant has the right to get the FIR read back and sign it\n5. You are entitled to receive a free copy of the FIR\n\n**Important Points**:\n- Police cannot refuse to register an FIR for a cognizable offense\n- FIR can also be filed online in many states (e-FIR facility)\n- Zero FIR can be filed at any police station if the crime occurred outside jurisdiction\n\n**Your Rights** (as per Lalita Kumari v. Govt. of UP, 2013):\n- Police must register FIR for cognizable offenses\n- No preliminary inquiry needed before registration\n- Refusal to register FIR is illegal`,
-        citations: [
-          { case: "Lalita Kumari v. Government of UP", year: "2013", court: "Supreme Court", citation: "(2014) 2 SCC 1" }
-        ],
-        hasDraft: false,
-      };
-    }
-
-    // Default response
-    return {
-      content: `Thank you for your question. I can help you with:\n\n• Understanding legal documents and notices\n• Explaining Indian laws (IPC, CrPC, Evidence Act, CPC)\n• Providing case law citations and precedents\n• Creating skeleton drafts for legal notices and complaints\n• Guidance on filing FIRs and legal procedures\n\nPlease ask a specific question or upload a document (PDF/DOCX, max 10MB) for analysis.`,
-      citations: [],
-      hasDraft: false,
-    };
-  };
-
-  const handleSend = () => {
-    if (!input.trim() && !uploadedFile) return;
+  const handleSend = async () => {
+    if (!input.trim() && uploadedFiles.length === 0) return;
 
     const userMessage = {
       id: Date.now(),
       type: 'user',
-      content: input || `Uploaded: ${uploadedFile?.name}`,
+      content: input || `Uploaded: ${uploadedFiles.map(f => f.name).join(', ')}`,
       timestamp: new Date(),
-      file: uploadedFile,
+      files: uploadedFiles.map(f => ({ name: f.name, size: f.size })),
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = input;
+    const currentFiles = [...uploadedFiles];
     setInput('');
+    setUploadedFiles([]);
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const response = generateMockResponse(input, uploadedFile);
+    try {
+      let response;
+      
+      if (currentFiles.length > 0) {
+        // Upload files with message
+        const formData = new FormData();
+        formData.append('session_id', sessionId);
+        formData.append('message', currentInput || 'Please analyze the uploaded documents.');
+        currentFiles.forEach(file => {
+          formData.append('files', file);
+        });
+
+        const result = await axios.post(`${BACKEND_URL}/api/chat/upload`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        response = result.data.message;
+      } else {
+        // Text-only message
+        const result = await axios.post(`${BACKEND_URL}/api/chat`, {
+          session_id: sessionId,
+          message: currentInput,
+        });
+        response = result.data.message;
+      }
+
       const botMessage = {
         id: Date.now() + 1,
         type: 'bot',
-        content: response.content,
-        citations: response.citations || [],
-        hasDraft: response.hasDraft,
-        draftContent: response.draftContent,
+        content: response,
         timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage = {
+        id: Date.now() + 1,
+        type: 'bot',
+        content: 'Sorry, I encountered an error. Please try again.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-      setUploadedFile(null);
-    }, 2000);
+    }
   };
 
   const handleFileUpload = (e) => {
