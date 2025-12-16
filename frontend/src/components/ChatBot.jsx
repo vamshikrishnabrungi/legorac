@@ -109,18 +109,20 @@ const ChatBot = () => {
   };
 
   const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+    const files = Array.from(e.target.files);
+    const validFiles = files.filter(file => {
       if (file.size > 10 * 1024 * 1024) {
-        alert('File size must be less than 10MB');
-        return;
+        alert(`${file.name} exceeds 10MB`);
+        return false;
       }
-      if (!file.name.match(/\.(pdf|docx)$/i)) {
-        alert('Only PDF and DOCX files are supported');
-        return;
+      if (!file.name.match(/\.(pdf|docx|jpg|jpeg|png|webp)$/i)) {
+        alert(`${file.name} format not supported. Please use PDF, DOCX, JPG, PNG, or WEBP.`);
+        return false;
       }
-      setUploadedFile(file);
-    }
+      return true;
+    });
+    
+    setUploadedFiles(prev => [...prev, ...validFiles].slice(0, 5));
   };
 
   const starterChips = [
