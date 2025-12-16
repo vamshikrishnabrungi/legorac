@@ -218,25 +218,25 @@ const WorkspacePage = () => {
               </Card>
 
               <Card>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <Bell className="h-4 w-4 text-slate-500" />
-                    <h4 className="font-semibold text-sm">Notifications & approvals</h4>
+                    <Bell className="h-5 w-5 text-slate-500" />
+                    <h4 className="font-semibold text-lg">Notifications & approvals</h4>
                   </div>
                   <button className="text-xs text-slate-600 hover:text-black">View all</button>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-700 divide-y divide-slate-100">
-                  <li className="flex justify-between pt-1">
-                    <span>Partner review: SPA draft</span>
-                    <span className="text-xs text-amber-600">Pending</span>
+                <ul className="space-y-4 text-sm text-slate-700">
+                  <li className="flex justify-between items-start py-2">
+                    <span className="leading-relaxed">Partner review: SPA draft</span>
+                    <span className="text-xs text-amber-600 font-medium px-2 py-1 bg-amber-50 rounded ml-4">Pending</span>
                   </li>
-                  <li className="flex justify-between pt-3">
-                    <span>Compliance check: SEBI addendum</span>
-                    <span className="text-xs text-emerald-600">Approved</span>
+                  <li className="flex justify-between items-start py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Compliance check: SEBI addendum</span>
+                    <span className="text-xs text-emerald-600 font-medium px-2 py-1 bg-emerald-50 rounded ml-4">Approved</span>
                   </li>
-                  <li className="flex justify-between pt-3">
-                    <span>Upload NDA for Acme</span>
-                    <span className="text-xs text-slate-400">Due</span>
+                  <li className="flex justify-between items-start py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Upload NDA for Acme</span>
+                    <span className="text-xs text-slate-600 font-medium px-2 py-1 bg-slate-100 rounded ml-4">Due</span>
                   </li>
                 </ul>
               </Card>
