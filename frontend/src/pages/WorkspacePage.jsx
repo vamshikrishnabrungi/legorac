@@ -289,31 +289,37 @@ const WorkspacePage = () => {
               </Card>
 
               <Card>
-                <div className="flex items-center justify-between">
-                  <h4 className="font-semibold text-sm">Vault preview</h4>
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-semibold text-lg">Vault preview</h4>
                   <button className="text-sm text-slate-600 hover:text-black">Open Vault</button>
                 </div>
-                <div className="space-y-3 text-sm text-slate-700">
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2">
-                      <Files className="h-4 w-4 text-slate-500" />
-                      Litigation bundle — <span className="text-xs text-emerald-700 font-semibold">Shared</span>
+                <div className="space-y-4 text-sm text-slate-700">
+                  <div className="flex items-start justify-between py-2">
+                    <span className="inline-flex items-start gap-3 flex-1">
+                      <Files className="h-5 w-5 text-slate-500 mt-0.5 flex-shrink-0" />
+                      <span className="leading-relaxed">
+                        Litigation bundle — <span className="text-xs text-emerald-700 font-semibold px-2 py-0.5 bg-emerald-50 rounded">Shared</span>
+                      </span>
                     </span>
-                    <span className="text-xs text-slate-400">Today</span>
+                    <span className="text-xs text-slate-400 ml-4">Today</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2">
-                      <Files className="h-4 w-4 text-slate-500" />
-                      Corporate SPA — <span className="text-xs text-amber-700 font-semibold">Draft</span>
+                  <div className="flex items-start justify-between py-2 border-t border-slate-100">
+                    <span className="inline-flex items-start gap-3 flex-1">
+                      <Files className="h-5 w-5 text-slate-500 mt-0.5 flex-shrink-0" />
+                      <span className="leading-relaxed">
+                        Corporate SPA — <span className="text-xs text-amber-700 font-semibold px-2 py-0.5 bg-amber-50 rounded">Draft</span>
+                      </span>
                     </span>
-                    <span className="text-xs text-slate-400">2d</span>
+                    <span className="text-xs text-slate-400 ml-4">2d</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2">
-                      <Files className="h-4 w-4 text-slate-500" />
-                      RBI notes — <span className="text-xs text-slate-700 font-semibold">Updated</span>
+                  <div className="flex items-start justify-between py-2 border-t border-slate-100">
+                    <span className="inline-flex items-start gap-3 flex-1">
+                      <Files className="h-5 w-5 text-slate-500 mt-0.5 flex-shrink-0" />
+                      <span className="leading-relaxed">
+                        RBI notes — <span className="text-xs text-slate-700 font-semibold px-2 py-0.5 bg-slate-100 rounded">Updated</span>
+                      </span>
                     </span>
-                    <span className="text-xs text-slate-400">This week</span>
+                    <span className="text-xs text-slate-400 ml-4">This week</span>
                   </div>
                 </div>
               </Card>
