@@ -325,22 +325,22 @@ const WorkspacePage = () => {
               </Card>
 
               <Card>
-                <div className="flex items-center justify-between">
-                  <h4 className="font-semibold text-sm">Teams & matters</h4>
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-semibold text-lg">Teams & matters</h4>
                   <button className="text-sm text-slate-600 hover:text-black">Manage</button>
                 </div>
-                <div className="space-y-2 text-sm text-slate-700">
-                  <div className="flex items-center justify-between">
-                    <span>Litigation</span>
-                    <span className="text-xs text-slate-400">12 matters</span>
+                <div className="space-y-4 text-sm text-slate-700">
+                  <div className="flex items-center justify-between py-2">
+                    <span className="leading-relaxed">Litigation</span>
+                    <span className="text-xs text-slate-500 font-medium ml-4">12 matters</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span>Corporate</span>
-                    <span className="text-xs text-slate-400">9 matters</span>
+                  <div className="flex items-center justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Corporate</span>
+                    <span className="text-xs text-slate-500 font-medium ml-4">9 matters</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span>Compliance</span>
-                    <span className="text-xs text-slate-400">6 matters</span>
+                  <div className="flex items-center justify-between py-2 border-t border-slate-100">
+                    <span className="leading-relaxed">Compliance</span>
+                    <span className="text-xs text-slate-500 font-medium ml-4">6 matters</span>
                   </div>
                 </div>
               </Card>
