@@ -98,8 +98,8 @@ const ChatInterface = () => {
         alert(`${file.name} exceeds 10MB`);
         return false;
       }
-      if (!file.name.match(/\.(pdf|docx)$/i)) {
-        alert(`${file.name} format not supported`);
+      if (!file.name.match(/\.(pdf|docx|jpg|jpeg|png|webp)$/i)) {
+        alert(`${file.name} format not supported. Please use PDF, DOCX, JPG, PNG, or WEBP.`);
         return false;
       }
       return true;
