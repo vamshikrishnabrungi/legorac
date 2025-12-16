@@ -187,3 +187,5 @@ test_plan:
 agent_communication:
     - agent: "main"
       message: "Initial error check completed. Fixed syntax errors in Features.jsx (escaped quotes). All services running. Backend API responding correctly. Frontend compiling successfully. Ready for comprehensive testing."
+    - agent: "main"
+      message: "Services restarted successfully. All dependencies installed (yarn install for frontend, pip install for backend). Frontend and backend both running. Took screenshots of landing page - UI renders beautifully. Found WebSocket connection errors in browser console (ws://localhost:443/ws) - this is a React hot reload configuration issue, not affecting core functionality. Page displays correctly with all sections visible. Backend API responding at /api/ endpoint. Ready for comprehensive backend and frontend testing."
