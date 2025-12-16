@@ -174,20 +174,6 @@ const ChatInterface = () => {
                 <div className={`prose ${msg.type === 'user' ? 'prose-invert' : ''} max-w-none`}>
                   <p className="text-sm leading-relaxed whitespace-pre-wrap m-0">{msg.content}</p>
                 </div>
-                
-                {msg.citations && msg.citations.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="text-xs font-semibold text-gray-500 mb-2">Citations</p>
-                    <div className="space-y-2">
-                      {msg.citations.map((cite, idx) => (
-                        <div key={idx} className="text-xs bg-gray-50 rounded-lg p-3">
-                          <p className="font-medium text-gray-900">{cite.case}</p>
-                          <p className="text-gray-500 mt-1">{cite.citation} • {cite.court} ({cite.year})</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           ))}
