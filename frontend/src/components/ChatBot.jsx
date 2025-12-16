@@ -289,7 +289,8 @@ const ChatBot = () => {
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".pdf,.docx"
+                accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"
+                multiple
                 onChange={handleFileUpload}
                 className="hidden"
               />
