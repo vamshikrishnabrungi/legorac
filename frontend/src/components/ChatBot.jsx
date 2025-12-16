@@ -310,7 +310,7 @@ const ChatBot = () => {
               />
               <Button
                 onClick={handleSend}
-                disabled={!input.trim() && !uploadedFile}
+                disabled={!input.trim() && uploadedFiles.length === 0}
                 className="bg-black text-white hover:bg-gray-800 rounded-lg px-4"
               >
                 <Send className="w-4 h-4" />
