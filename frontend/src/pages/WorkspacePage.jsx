@@ -54,7 +54,7 @@ const WorkflowBadge = ({ label }) => (
 );
 
 const Card = ({ children }) => (
-  <div className="bg-white border border-slate-200 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] p-6 space-y-3">
+  <div className="bg-white border border-slate-200 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] p-8">
     {children}
   </div>
 );
