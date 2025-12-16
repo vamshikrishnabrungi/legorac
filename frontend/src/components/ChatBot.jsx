@@ -1,14 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Upload, X, FileText, Shield, MessageSquare, BookOpen, Scale } from 'lucide-react';
 import { Button } from './ui/button';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [doNotStore, setDoNotStore] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
 
